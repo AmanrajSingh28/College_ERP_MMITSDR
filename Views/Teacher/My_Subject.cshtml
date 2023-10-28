@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "My_Subject";
+    Layout = "~/Views/Shared/TeacherMaster.cshtml";
+}
+@using mycollage.Models;
+@using System.Data;
+<script src="~/Content/js/course.js"></script>
+<script src="~/Content/css/akash.js"></script>
+<link href="~/Content/css/akash.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/css/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    })
+
+</script>
+<div class="container-fluid">
+    <div class="row text-center" style="min-height:50px;font-size:30px;color:black;margin-top:-1%;font-family:bolder;">
+        <p style="margin-top:10px;">My_Subject</p>
+    </div>
+    <!--code for show details-->
+    @{
+        string cmd = "select * from Faculties";
+        DatabaseManager db = new DatabaseManager();
+        DataTable dt = db.GetAllRecord(cmd);
+        if (dt.Rows.Count > 0)
+        {
+            <div class="col-sm-12" style="overflow-y:scroll;height:500px">
+                <table class="table table-responsive" id="example" width="100%" style="font-family:'Times New Roman'">
+                    <thead><tr style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; "><th>TeacherName</th><th>TeacherId</th><th>Email</th><th>Branch</th><th>Subject</th></tr></thead>
+                    <tbody>
+
+                        @for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            <tr>
+
+
+                                <td class="td1" id="name">@dt.Rows[i]["TeacherName"]</td>
+                                <td>@dt.Rows[i]["TeacherId"]</td>
+                                <td>@dt.Rows[i]["Email"]</td>
+                                <td>@dt.Rows[i]["Branch"]</td>
+                                <td>@dt.Rows[i]["subject"]</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
+        }
+    }
+
+    <!--End code for show details-->
+    </div>
