@@ -1,0 +1,215 @@
+﻿@{
+    ViewBag.Title = "Students";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@using System.Data.Sql;
+@using System.Data;
+@using mycollage.Models;
+<link href="~/Content/css/akash.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+<script src="~/Content/css/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+        $("#dv").hide();
+        $(".btn-success").click(function ()
+        {
+            $("#dv").fadeIn(2222);
+            var t = $(this).closest("tr").find('.td1').next().next().text();
+            $("#TxtRoll").val(t);
+            //alert(t);
+        })
+    })
+
+</script>
+@*<script>
+    // This function will validate Name.
+    function allLetter() {
+        var uname = document.Students.Fname;
+        var letters = /^[A-Za-z]+$/;
+        if (uname.value.match(letters)) {
+            // Focus goes to next field i.e. Address.
+            document.Students.address.focus();
+            return true;
+        }
+        else {
+            alert('Fname must have alphabet characters only');
+            uname.focus();
+
+            return false;
+        }
+    }
+
+
+
+</script>*@
+<div class="container-fluid" style="padding:0px;">
+    <div class="col-sm-12 text-center" style="background: white; min-height: 20px; color: whitesmoke; font-weight: bolder;">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin:2%;">
+             Student Register
+        </button>
+    </div>
+   
+    <br />
+    <br />
+    <!--code for show details-->
+    @{
+    string cmd = "select * from students";
+    DatabaseManager db = new DatabaseManager();
+    DataTable dt = db.GetAllRecord(cmd);
+    if (dt.Rows.Count > 0)
+    {
+        <div class="col-sm-12" style="overflow-y:scroll;height:500px">
+            <table class="table table-responsive" width="100%" id="example">
+                <thead><tr style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; text-align:center;"><th>FName</th><th>LName</th><th>RollNo</th><th>Email</th><th>Branch</th><th>Photo</th><th>Add Course</th><th>Update</th></tr></thead>
+                <tbody>
+
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr style="text-align:center;">
+                            <td class="td1">@dt.Rows[i]["FName"]</td>
+                            <td>@dt.Rows[i]["LName"]</td>
+                            <td>@dt.Rows[i]["Rollno"]</td>
+                            <td>@dt.Rows[i]["Email"]</td>
+                            <td>@dt.Rows[i]["Branch"]</td>
+                            <td><img src="../Content/pic/@dt.Rows[i]["photo"]" class="img img-circle" style="height:40px;width:40px" /></td>
+                            <td>
+                                <a href="/Admin/Course?year=@dt.Rows[i]["year"]&branch=@dt.Rows[i]["branch"]&semester=@dt.Rows[i]["semester"]&Roll=@dt.Rows[i]["Rollno"]"><span class="fa fa-book" style="font-size:35px;"></span></a>
+
+                            </td>
+                            <td>
+                                <a href="/Admin/Course?year=@dt.Rows[i]["year"]&branch=@dt.Rows[i]["branch"]&semester=@dt.Rows[i]["semester"]"><span class="fa fa-edit" style="font-size:35px;"></span></a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
+
+    <!--End code for show details-->
+
+    <br />
+    <br />
+
+    <div class="col-sm-12">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4  panel panel-body" id="dv" style="margin-top:1%;border:1px solid teal">
+            <form action="/Admin/Students" method="post">
+            Roll Number
+                <input type="text" class="form-control" readonly="readonly" name="TxtRoll" id="TxtRoll" maxlength="30"/>
+            Course
+                <select class="form-control" name="ddlcourse" id="ddlcourse">
+                    <option>select Branch</option>
+                    <option>cs</option>
+                    <option>EE</option>
+                    <option>Elx</option>
+                </select>
+                <input type="submit"name="btn"value="Course"class="form-control" />
+       </form>
+                 </div>
+        <div class="col-sm-4"></div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-family:'Times New Roman'">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center"  style="">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title panel panel-heading" id="myModalLabel" style="font-family:'Times New Roman';font:bolder;background:teal;color:white;min-height:50px;margin-top:3%;font-size:25px;"> student Registration</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/Students" method="post" name="frmlogin"enctype="multipart/form-data">
+                        <div class="row" style="font-size:20px;">
+                            <div class="col-sm-6">
+                               
+                                <select name="Branch" class="col-sm-12 form-control" id="ddlbranch">
+                                    <option>Select Branch Type</option>
+                                    <option value="CS">Computer Science</option>
+                                    <option value="EE">Electrical Engg</option>
+                                    <option value="ELX">Elecronic Engg</option>
+
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="year" class="col-sm-12 form-control" id="ddlyear">
+                                    <option>Select Year</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+
+                                </select>
+                             
+                            </div>
+                        </div>
+                        <div class="row" style="font-size:20px;margin-top:15px;">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Rollno"
+                                       name="Rollno" id="txtroll" required autocomplete="off" maxlength="20"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="date" class="form-control" placeholder="DOB"
+                                       name="DOB" required autocomplete="off" maxlength="30"/>
+                            </div>
+
+                        </div>
+                        <div class="row" style="font-size: 20px; margin-top: 15px;">
+                            <div class="col-sm-6"><input type="text" class="form-control" placeholder="Enter first name" name="Fname" onblur="allLetter()" required autocomplete="off" maxlength="50" /></div>
+                            <div class="col-sm-6"><input type="text" class="form-control" placeholder="Enter last name" name="Lname" required autocomplete="off" maxlength="50"/></div>
+                        </div>
+                        <div class="row" style="font-size: 20px; margin-top: 15px;">
+                            <div class="col-sm-6"><input type="email" class="form-control" placeholder="Enter your email" name="Email" required  autocomplete="off" maxlength="50"/></div>
+                            <div class="col-sm-6"><input type="number" class="form-control" placeholder="Entr mobile no" name="number" maxlength="10" required autocomplete="off"/></div>
+                        </div>
+                        <div class="row" style="font-size: 20px; margin-top: 15px;">
+                            <div class="col-sm-6"><input type="text" class="form-control" placeholder="Ente state" name="State" required maxlength="50" autocomplete="off" /></div>
+                            <div class="col-sm-6">
+                                <select name="Gender" class="col-sm-12 form-control">
+                                    <option>Select Gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 20px; margin-top: 15px;">
+                            <div class="col-sm-6"><input type="text" class="form-control" placeholder="Mother Name" name="Mothername" required autocomplete="off" maxlength="50" /></div>
+                            <div class="col-sm-6"><input type="text" class="form-control" placeholder="Father name" name="Fathername" required autocomplete="off" maxlength="50"/></div>
+
+                        </div>
+                        <div class="row" style="font-size: 20px; margin-top: 15px;">
+                            <div class="col-sm-6"><input type="file" class="form-control" placeholder="Chooes photo" name="pic" required autocomplete="off"/></div>
+                            <div class="col-sm-6"><input type="text" class="form-control" placeholder="Enter city" name="city" autocomplete="off" required maxlength="50" /></div>
+                        </div>
+                        <div class="row" style="font-size: 20px; margin-top: 15px;">
+                            <div class="col-sm-6">
+                                <select name="sem" class="form-control">
+                                    <option>select semester</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="col-sm-6"></div>
+                        </div>
+
+
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-default" data-dismiss="modal" value="close" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;"/>
+                        <input type="submit" class="btn btn-primary" style= "background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;"/>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>
+</div>

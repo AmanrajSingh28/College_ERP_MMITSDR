@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@using System.Data.Sql;
+@using System.Data;
+@using mycollage.Models;
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+
+<div class="container-fluid">
+    @Session["aid"];
+    <div class="row text-center" style="margin-top:2%;font-family:bolder;font-size:20px;color:white;">
+        <div class="col-sm-3">
+            <div class="well" style="background:teal;">
+                <h4>@ViewBag.show2</h4>
+                <p>Total Subject</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="well" style="background:teal;">
+                <h4>@ViewBag.show</h4>
+                <p>Total student</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="well" style="background:teal;">
+                <h4>No</h4>
+                <p>Total teacher</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="well" style="background:teal;">
+                <h4>No</h4>
+                <p>fine student</p>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------------------------->
+    <!------------------------------------------------------------->
+    <div class="row" style="margin-top:2%;">
+        
+        <div class="col-sm-5">
+            <form action="/Admin/Index" method="post">
+                <div class="well" style="min-height:230px;border:1px solid black;">
+                    <div class="row text-center" style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; color: white;margin-top:-4.5%;min-height:50px;font-size:20px;font-family:bolder;">
+                        <p style="margin-top:2%;">Upload Notification</p>
+                    </div>
+                    '<!------------------------------------------------------->
+                    <div class="row">
+                        <label style="font-size:20px;">Receiver</label>
+                        <select class="col-sm-12" name="type" style="min-height:45px;">
+                            <option></option>
+                            <option> Principle</option>
+                            <option>Student</option>
+                            <option> Teacher</option>
+                        </select>
+                    </div>
+                    <div class="row" style="font-size:20px;">
+                        <label>Message</label><br />
+                        <textarea cols="40" rows="3" name="msg"> </textarea>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary btn-sm" value="Upload" />
+                </div>
+
+            </form>
+</div>
+    
+       
+        <div class="col-sm-5">
+            <div class="well" style="min-height:330px;border:1px solid black;margin-left:40px;">
+                <div class="row text-center" style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; color: white;margin-top:-4.5%;min-height:40px;font-size:20px;font-family:bolder;">
+                    <p style="margin-top:2%;">Show Notification</p>
+                </div>
+
+                <!--code for show details-->
+                <div class="row">
+         @{
+    string cmd = "select * from notification";
+    DatabaseManager db = new DatabaseManager();
+    DataTable dt = db.GetAllRecord(cmd);
+    if (dt.Rows.Count > 0)
+    {
+        <table class="table table-responsive" width="100%">
+            <thead><tr style="background-color:teal; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; "><th>ReciverType</th><th>Message</th><th>NotificationDate</th></tr></thead>
+            <tbody>
+
+                @for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    <tr>
+                  
+                        <td>@dt.Rows[i]["ReciverType"]</td>
+                        <td>@dt.Rows[i]["Message"]</td>
+
+                        <td>@dt.Rows[i]["NotificationDate"]</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+                    }
+                </div>
+            </div>
+</div>
+    </div>
+    </div>
+<!--End code for show details-->
+

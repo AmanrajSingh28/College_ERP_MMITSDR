@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "Faculties";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@using System.Data.Sql;
+@using System.Data;
+@using mycollage.Models;
+<link href="~/Content/css/akash.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+<script src="~/Content/css/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+        $("#dv").hide();
+        $(".btn-success").click(function () {
+            $("#dv").fadeIn(2222);
+            var t = $(this).closest("tr").find('.td1').next().next().text();
+            $("#TxtRoll").val(t);
+            
+            //alert(t);
+        })
+    })
+
+</script>
+<script>
+    $(document).ready(function () {
+       
+    })
+
+</script>
+
+<div class="container-fluid" style="padding:0px;font-family:'Times New Roman'">
+    <div class="col-sm-6 text-center" style="background:gray;min-height:55px; color:whitesmoke;font-weight:bolder;"><h4>All Teacher</h4></div>
+    <div class="col-sm-6 text-center" style="background:gray;min-height:50px; color:whitesmoke;font-weight:bolder;">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin:2%;">
+            New Teacher
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" style="margin:2%;">
+            Photo View
+        </button>
+    </div>
+    <!--code for show details-->
+    
+    @{
+        string cmd = "select * from Faculties";
+        DatabaseManager db = new DatabaseManager();
+        DataTable dt = db.GetAllRecord(cmd);
+        if (dt.Rows.Count > 0)
+        {
+             <div class="col-sm-12" style="overflow-y:scroll;height:500px">
+                 <table class="table table-responsive" id="example" width="100%">
+                     <thead><tr style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; "><th>TeacherName</th><th>TeacherId</th><th>Email</th><th>Mob</th><th>Quali</th><th>Photo</th></tr></thead>
+                     <tbody>
+
+                         @for (int i = 0; i < dt.Rows.Count; i++)
+                         {
+                             <tr>
+                                 <td class="td1" id="name">@dt.Rows[i]["TeacherName"]</td>
+                                 <td>@dt.Rows[i]["TeacherId"]</td>
+                                 <td>@dt.Rows[i]["Email"]</td>
+                                 <td>@dt.Rows[i]["Mobile"]</td>
+                                 <td>@dt.Rows[i]["Qualification"]</td>
+                                 <td><img src="../Content/pic/@dt.Rows[i]["photo"]" class="img img-circle" style="height:40px;width:40px" /></td>
+                                 @*<td><button type="button" class="btn btn-primary btnsubject" data-toggle="modal" data-target="#coModal"  style="margin:2%;">
+                            New Teacher
+                        </button></td>*@
+
+
+                             </tr>
+                         }
+                     </tbody>
+                 </table>
+                 </div>
+        }
+    }
+        
+    <script>
+        $(document).ready(function () {
+            $(".btnsubject").click(function () {
+                alert("ok");
+                var t = $(this).closest("tr").find(".td1").next().text();
+          
+                $("#in").val(t);
+            })
+        })
+
+    </script>
+    <!--End code for show details-->
+    <!---------------------------modal for course----------------------------->
+    @*<div class="modal fade" id="coModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="font-family:sans-serif;font-weight:bolder;">Add New Teacher</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/faculties" method="post" name="frmlogin">
+                        <div class="row" style="font-size:15px;margin-top:5px;">
+
+                            <div class="col-sm-6">
+                                <label>subject</label>
+                                <input type="text" class="form-control" name="sub" />
+                            </div>
+                           
+                        </div>
+                        <input type="text" id="in" name="id" style="display:none" autocomplete="off" />
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;">Close</button>
+                        <input type="submit" class="btn btn-primary" name="btn2" value="Assign" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;" />
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    
+
+    <!----------------------------end modal--------------------------------->
+
+
+
+
+
+
+
+
+
+ <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center" style="background:teal;min-height:50px;color:white;font-size:20px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p class="modal-title" id="myModalLabel" style="font-family:sans-serif;font-weight:bolder;">Teacher Registration</p>
+                </div>
+                <div class="modal-body" >
+                    <form action="/Admin/faculties" method="post" name="frmlogin">
+                        <div class="row" style="font-size:15px;margin-top:5px;">
+                            <div class="col-sm-6">
+                                <label>Teacher Name</label>
+                                <input type="text" class="form-control" placeholder="Enter teacher name" name="name" required autocomplete="off" maxlength="50" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Teacher ID</label>
+                                <input type="number" class="form-control" placeholder="" name="Id" required autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 15px; margin-top: 5px;">
+                            <div class="col-sm-6">
+                                <label>State</label>
+                                <input type="text" class="form-control" id="state" placeholder="Enter state" name="State" required autocomplete="off" maxlength="50"/>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label>City</label>
+                                <input type="text" class="form-control" id="city" placeholder="Enter city" name="city" required autocomplete="off" maxlength="50" />
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 15px; margin-top: 5px;">
+                            <div class="col-sm-6">
+                                <label>Email Id</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="Email" required autocomplete="off" maxlength="50" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Phone Number</label>
+                                <input type="number" class="form-control" id="number" placeholder="Enter number" name="Mob" required autocomplete="off" maxlength="10" />
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 15px; margin-top: 5px;">
+                            <div class="col-sm-6">
+                                <label>Qualification</label>
+                                <input type="text" class="form-control" id="text" placeholder="Enter Qualification" name="Quali" required autocomplete="off" maxlength="50"/>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label>Experience</label>
+                                <input type="text" class="form-control" placeholder="Enter Experience" name="Exp" required autocomplete="off" maxlength="50"/>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 15px; margin-top: 5px;">
+                            <div class="col-sm-6">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" id="date" placeholder="Enter DOB" name="DOB" required autocomplete="off" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Gender</label>
+                                <select name="GENDER" class="form-control">
+                                    <option>select gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 15px; margin-top: 5px;">
+                            <div class="col-sm-6">
+                                <label>Branch</label>
+                                <select name="branch1" class="form-control">
+                                    <option value="">select Branch</option>
+                                    <option value="CS">Computer Science</option>
+                                    <option value="ELX">Electronic Engg.</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Photo</label>
+                                <input type="file" class="form-control" name="abc" required autocomplete="off" />
+                            </div>
+                        </div>
+                        
+                            @*<div class="col-sm-6">
+                                <label>subject</label>
+                                <input type="text" class="form-control" name="sub" autocomplete="off" />
+                            </div>*@
+                        
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;">Close</button>
+                                <input type="submit" class="btn btn-primary" name="btn1" value="Add Now" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;" />
+                            </div>
+</form>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>

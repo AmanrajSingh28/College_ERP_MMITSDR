@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Subject";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+<div class="container-fluid" style="padding:0px;">
+    <div class="col-sm-12 text-center" style="background:gray;min-height:50px; color:whitesmoke;font-weight:bolder;margin-bottom:2%;font-size:20px;"><p style="margin-top:1%;">Subject Management</p></div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8" style="background:;min-height:50px; color:whitesmoke;font-weight:bolder;">
+        <form action="/Admin/Subject" method="post">
+            <div class="row" style="font-size:20px;">
+                <div class="col-sm-12" style="margin-top:20px;">
+                    <select name="year" class="col-sm-12 form-control">
+                        <option>Select Year</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="col-sm-12" style="margin-top:10px;">
+                    <select name="branch" class="col-sm-12 form-control">
+                        <option >Select Branch</option>
+                        <option value="CS">Computer Science</option>
+                        <option value="EE">Electrical Engg</option>
+                        <option value="ELX">Electronic Engg</option>
+                    </select>
+                </div>
+                <div class="col-sm-12" style="margin-top:10px;">
+                    <select name="semester" class="col-sm-12 form-control">
+                        <option>Select Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-12" style="margin-top:10px;">
+                    <input type="text" class="form-control" name="txtcourse" placeholder="Course Name" />
+                </div>
+            </div>
+            <div class="row" style="margin-top:15px;">
+                <div class="col-sm-6 text-center">
+                </div>
+                <div class="col-sm-3 text-center">
+                    <input type="submit" value="Submit" name="btnsum" class="btn btn-success btn btn-block" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;" />
+                </div>
+
+                <div class="col-sm-3 text-center">
+                    <button type="button" value="Add Subject" name="btnadd" class="btn btn-success btn btn-block" data-toggle="modal" data-target="#myModal" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;">reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+

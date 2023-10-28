@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+@using System.Data.Sql;
+@using System.Data;
+@using mycollage.Models;
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+
+ <!--code for show details-->
+@{
+    string cmd = "select * from students";
+    DatabaseManager db = new DatabaseManager();
+    DataTable dt = db.GetAllRecord(cmd);
+    if (dt.Rows.Count > 0)
+    {
+        <table class="table table-responsive" width="100%" style="font-family:'Times New Roman'">
+            <thead><tr style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; "><th>FName</th><th>LName</th><th>RollNo</th><th>Email</th><th>Branch</th><th>Semester</th><th>Photo</th><th>Block User</th></tr></thead>
+            <tbody>
+
+                @for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    <tr>
+                        <td class="td1">@dt.Rows[i]["FName"]</td>
+                        <td>@dt.Rows[i]["LName"]</td>
+                        <td>@dt.Rows[i]["Rollno"]</td>
+                        <td>@dt.Rows[i]["Email"]</td>
+                        <td>@dt.Rows[i]["branch"]</td>
+                        <td>@dt.Rows[i]["semester"]</td>
+                        <td><img src="../Content/pic/@dt.Rows[i]["photo"]" class="img img-circle" style="height:40px;width:40px"/></td>
+                        <td>
+
+                   <a href="/Admin/blockuser?blk=@dt.Rows[i]["Rollno"]"><input type="button" class="btn-danger text-uppercase" value="Block" /></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+<!--End code for show details--> 

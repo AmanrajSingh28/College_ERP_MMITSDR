@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Assign_Subject";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@using System.Data.Sql;
+@using System.Data;
+@using mycollage.Models;
+<link href="~/Content/css/akash.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+<script src="~/Content/css/akash.js"></script>
+@*<script>
+    $(document).ready(function () {
+        var y = $("#yea").val();
+        var b = $("#bch").val();
+        var s = $("#sem").val();
+
+    })
+$.ajax({
+   type: "post",
+    url: "/Admin/Assign_Subject",
+   data: { Branch: b, Year: y,Sem:s},
+success: function (data) {
+    $("#sp").html(data);},
+failure: function () {
+alert("Error");}
+})
+</script>*@
+<div class="container-fluid" style="padding:0px;">
+    <div class="col-sm-12"style="padding:0px;">
+        <div class="col-sm-12 text-center" style="background:gray;min-height:53px; color:whitesmoke;font-weight:bolder;"><h2>Assign subject</h2></div>
+     
+        </div>
+        <!--code for show details-->
+        @{
+    string cmd = "select * from Faculties";
+    DatabaseManager db = new DatabaseManager();
+    DataTable dt = db.GetAllRecord(cmd);
+    if (dt.Rows.Count > 0)
+    {
+          <div class="col-sm-12" style="overflow-y:scroll;height:500px">
+        <table class="table table-responsive" width="100%" id="example">
+            <thead><tr style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; "><th>TeacherName</th><th>TeacherId</th><th>Email</th><th>Branch</th><th>Quali</th><th>Photo</th><th>subject</th></tr>
+            </thead>
+            <tbody>
+
+                @for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                        <tr>
+                            <td class="td1" id="name">@dt.Rows[i]["TeacherName"]</td>
+                            <td>@dt.Rows[i]["TeacherId"]</td>
+                            <td>@dt.Rows[i]["Email"]</td>
+                            <td>@dt.Rows[i]["branch"]</td>
+                            <td>@dt.Rows[i]["Qualification"]</td>
+                            <td><img src="../Content/pic/@dt.Rows[i]["photo"]" class="img img-circle" style="height:40px;width:40px" /></td>
+                            <td>
+                                @*<button type="button" class="btn btn-primary btnsubject" data-toggle="modal" data-target="#coModal" style="margin:2%;">
+                                        New Teacher
+                                    </button>*@
+                                @*<a class="btn btn-primary btnsubject" href="/Admin/AllotSubject?course=@dt.Rows[i]["branch"]" data-toggle="modal" data-target="#coModal"><span class="fa fa-book"></span></a>*@
+                                <a href="/Admin/AllotSubject?course=@dt.Rows[i]["branch"]&id=@dt.Rows[i]["TeacherId"]" /><span class="fa fa-book"></span></td>
+
+
+                        </tr>
+                        }
+            </tbody>
+        </table>
+    </div>
+    }
+}
+        <script>
+            $(document).ready(function () {
+                $("#example").DataTable();
+                $(".btnsubject").click(function () {
+                    debugger
+                    var t = $(this).closest("tr").find(".td1").next().text();
+                    var branch = $(this).closest("tr").find(".td1").next().next().next().text();
+                    //alert(branch);
+                    $("#txtbranch").val(branch);
+                    $("#in").val(t);
+                    $.ajax({
+                        type: "post",
+                        url: "/Admin/Asign",
+                        data: { Branch: branch },
+                        success: function (data) {
+                            alert(data);
+                            $("#spbranch").html(data);
+                       } 
+                    })
+                })
+                $("#btnasign").click(function () {
+                    var txtbranch = $("#spbranch").text();
+                    var tid = $("#tid").val();
+                    alert(txtbranch+tid);
+                    $.ajax({
+                        type: 'post',
+                        url: '/Admin/Allotsubject',
+                        data: { TxtBranch: txtsubject,Tid:Tid },
+                        success: function (data) {
+                            alert("Subject Alloted Successfull...");
+                        }
+                    })
+                })
+             
+            })
+
+        </script>
+        <!--End code for show details-->
+
+    <!---------------------------modal for course----------------------------->
+    <div class="modal fade" id="coModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="font-family:sans-serif;font-weight:bolder;">Add New Teacher</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/Assign_Subject" method="post" name="frmlogin">
+                        <div class="row" style="font-size:15px;margin-top:5px;">
+                            
+                            @*<div class="col-sm-6">
+                                <label>subject</label>
+                                <input type="text" class="form-control" name="sub" />
+                            </div>*@
+                            
+                            <div class="col-sm-12"style="margin-top:1%;">
+                                <input type="hidden" class="form-control" name="txtbranch" id="txtbranch" /> 
+                            </div>
+
+                            
+                          
+                            <div class="col-sm-12">
+                                <div class="col-sm-9 panel panel-body" style="overflow-y:scroll;height:80px;border:1px solid teal">
+                                <span id="spbranch" ></span>
+                                    <input type="text" id="txt"/>
+                                </div>
+                                <div class="col-sm-3">
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <input type="hidden" id="tid" name="id" maxlength="15" />
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;">Close</button>
+                            <input type="button" class="btn btn-primary" name="btn2" value="Assign" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;" id="btnasign" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!----------------------------end modal--------------------------------->
+
+    </div>

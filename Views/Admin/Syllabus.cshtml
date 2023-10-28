@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Syllabus";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+<div class="container-fluid" style="">
+    <div class="row" style="min-height:50px;padding:0px;">
+        <div class="col-sm-6 text-center" style="background:gray;min-height:56px; color:whitesmoke;font-weight:bolder;"><h4>Syllabus Management</h4></div>
+        <div class="col-sm-6 text-center" style="background:gray;min-height:50px; color:whitesmoke;font-weight:bolder;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin:2%;">
+                Upload Syllabus
+            </button>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p class="modal-title panel panel-heading"  id="myModalLabel" style="font-family:'Times New Roman';font:bolder;background:teal;color:white;min-height:50px;margin-top:10px; font-size:20px;">Upload Syllabus</p>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/Syllabus" method="post" name="frmlogin" enctype="multipart/form-data">
+                        <div class="row" style="font-size:20px;">
+                            <div class="col-sm-12">
+
+                                <select name="Branch" class="col-sm-12 form-control" style=" font-family:'Times New Roman';" >
+                                    <option>Select Branch Type</option>
+                                    <option value="cs">Computer Science</option>
+                                    <option value="EE">Electrical Engg</option>
+                                    <option value="ELX">Elecronic Engg</option>
+
+                                </select>
+                            </div>
+                            </div>
+                        <div class="row" style="font-size: 20px; margin-top: 5px;font-family:'Times New Roman';">
+                            <div class="col-sm-12">
+                                <select name="year" class="col-sm-12 form-control">
+                                    <option>Select Year</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 20px; margin-top: 5px; font-family: 'Times New Roman';">
+                            <div class="col-sm-12">
+                                <select name="type" class="col-sm-12 form-control">
+                                    <option>pdf</option>
+                                    <option>ppt</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 20px; margin-top: 5px; font-family: 'Times New Roman';">
+                            <div class="col-sm-12"><input type="text" class="form-control" placeholder="enter topic" name="msg" required autocomplete="off" /></div>
+
+                        </div>
+                       
+                        <div class="row" style="font-size: 20px; margin-top: 5px; font-family: 'Times New Roman';">
+                            <div class="col-sm-12"><input type="file" class="form-control" placeholder="Chooes file" name="pic" required /></div>
+                            
+                        </div>
+
+                      <div class="modal-footer">
+                            <input type="submit" class="btn btn-default" data-dismiss="modal" value="close" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;" />
+                            <input type="submit" class="btn btn-primary" style="background-color:#0c79c3; margin:0px;box-shadow:inset 0 0 2em black;color:whitesmoke;" />
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>
