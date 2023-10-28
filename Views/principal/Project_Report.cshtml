@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Project_Report";
+    Layout = "~/Views/Shared/princplemaster.cshtml";
+}
+@using System.Data.Sql;
+@using System.Data;
+@using mycollage.Models;
+<link href="~/Content/css/akash.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+<script src="~/Content/css/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    })
+
+</script>
+
+<div class="container-fluid" style="padding:0px;">
+    <div class="col-sm-12 text-center" style="background:gray;min-height:55px; color:whitesmoke;font-weight:bolder; font-family:'Times New Roman';margin-top:-5px;"><h2>Project Management</h2></div>
+    <!--code for show details-->
+    @{
+        string cmd = "select * from ProjectReport";
+        DatabaseManager db = new DatabaseManager();
+        DataTable dt = db.GetAllRecord(cmd);
+        if (dt.Rows.Count > 0)
+        {
+            <div class="col-sm-12" style="overflow-y:scroll;height:500px">
+                <table class="table table-responsive" id="example" width="100%">
+                    <thead><tr style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; "><th>Id</th><th>Branch</th><th>Project Title</th><th>Project Technology</th><th>ReportFile</th><th>Download</th></tr></thead>
+                    <tbody>
+
+                        @for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            <tr>
+                                <td class="td1">@dt.Rows[i]["Id"]</td>
+                                <td>@dt.Rows[i]["Branch"]</td>
+                                <td>@dt.Rows[i]["ProjectTitle"]</td>
+                                <td>@dt.Rows[i]["ProTechnology"]</td>
+                                <td>@dt.Rows[i]["Projectfile"]</td>
+                                <td>
+                                    <a href="../Content/pic/@dt.Rows[i]["Projectfile"]"><span class="fa fa-download"></span></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+
+    
+</div>
+
+
