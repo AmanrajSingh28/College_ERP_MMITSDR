@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+
+@*<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>*@
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Arcane Programming Infotech">
+    <meta name="keywords" content="arcane programming infotech, apinfotech, top training institutes in lucknow for cs/it, computer science and engineering training institutes in lucknow, best it companies in lucknow, apinfotech.com, arcaneprogramminginfotech.com">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/">
+    <!-- SITE TITLE -->
+    <title>MMIT SantKabir Nagar</title>
+    <link href="~/assets/css/CustomStyle.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Favicon Icon -->
+    <!-- Animation CSS -->
+    <link rel="stylesheet" href="~/assets/css/animate.css" />
+    <!-- Latest Bootstrap min CSS -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet" />
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="~/assets/css/ionicons.min.css" />
+    <link rel="stylesheet" href="~/assets/css/themify-icons.css" />
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="~/assets/css/all.min.css" />
+    <!--- owl carousel CSS-->
+    <link rel="stylesheet" href="~/assets/owlcarousel/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/assets/owlcarousel/css/owl.theme.css" />
+    <link rel="stylesheet" href="~/assets/owlcarousel/css/owl.theme.default.min.css" />
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="~/assets/css/magnific-popup.css" />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <link rel="stylesheet" href="~/assets/css/responsive.css" />
+    <link rel="stylesheet" id="layoutstyle" href="~/assets/color/theme.css" />
+    <script>
+        let modalId = $('#image-gallery');
+
+        $(document)
+          .ready(function () {
+
+              loadGallery(true, 'a.thumbnail');
+
+
+              function disableButtons(counter_max, counter_current) {
+                  $('#show-previous-image, #show-next-image')
+                    .show();
+                  if (counter_max === counter_current) {
+                      $('#show-next-image')
+                        .hide();
+                  } else if (counter_current === 1) {
+                      $('#show-previous-image')
+                        .hide();
+                  }
+              }
+
+              function loadGallery(setIDs, setClickAttr) {
+                  let current_image,
+                    selector,
+                    counter = 0;
+
+                  $('#show-next-image, #show-previous-image')
+                    .click(function () {
+                        if ($(this)
+                          .attr('id') === 'show-previous-image') {
+                            current_image--;
+                        } else {
+                            current_image++;
+                        }
+
+                        selector = $('[data-image-id="' + current_image + '"]');
+                        updateGallery(selector);
+                    });
+
+                  function updateGallery(selector) {
+                      let $sel = selector;
+                      current_image = $sel.data('image-id');
+                      $('#image-gallery-title')
+                        .text($sel.data('title'));
+                      $('#image-gallery-image')
+                        .attr('src', $sel.data('image'));
+                      disableButtons(counter, $sel.data('image-id'));
+                  }
+
+                  if (setIDs == true) {
+                      $('[data-image-id]')
+                        .each(function () {
+                            counter++;
+                            $(this)
+                              .attr('data-image-id', counter);
+                        });
+                  }
+                  $(setClickAttr)
+                    .on('click', function () {
+                        updateGallery($(this));
+                    });
+              }
+          });
+
+        // build key actions
+        $(document)
+          .keydown(function (e) {
+              switch (e.which) {
+                  case 37: // left
+                      if ((modalId.data('bs.modal') || {})._isShown && $('#show-previous-image').is(":visible")) {
+                          $('#show-previous-image')
+                            .click();
+                      }
+                      break;
+
+                  case 39: // right
+                      if ((modalId.data('bs.modal') || {})._isShown && $('#show-next-image').is(":visible")) {
+                          $('#show-next-image')
+                            .click();
+                      }
+                      break;
+
+                  default:
+                      return; // exit this handler for other keys
+              }
+              e.preventDefault(); // prevent the default action (scroll / move caret)
+          });
+
+    </script>
+
+</head>
+
+<body>
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <span class="spinner"></span>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- END LOADER -->
+    <!-- START HEADER -->
+    <header class="header_wrap dark_skin">
+        <div class="top-header light_skin bg-dark">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <ul class="contact_detail list_none text-center text-md-left">
+                            <li><a href="#"><i class="ti-mobile"></i>993-679-6369 , 930-619-9011</a></li>
+                            <li><a href="#" class="text-uppercase"><i class="ti-email"></i>mmitskn@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex flex-wrap align-items-center justify-content-md-end justify-content-center mt-2 mt-md-0">
+                            <ul class="list_none social_icons social_white text-center text-md-right">
+                                <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                                <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                                <li><a href="#"><i class="ion-social-youtube-outline"></i></a></li>
+                                <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                            </ul>
+                            <ul class="list_none header_list border_list ml-1">
+
+                                <li><a href="../College/Register" class="btn btn-primary btn-sm">Register Now</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand img-with-text" href="index.html">
+                    <img class="logo_dark" src="../assets/images/mmit.jpg" alt="logo" style="height:80px;" />
+                </a>
+
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="ion-android-menu"></span> </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li>
+                            <a class="nav-link active" href="../College/Index">Home</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="../College/AboutUs">About Us</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="../College/Gallery">Gallery</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Cources</a>
+                            <div class="dropdown-menu">
+                                <ul>
+                                    <li>
+                                        <a class="dropdown-item nav-link nav_item" href="../College/ComputerScience">Computer SCience</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item nav-link nav-item" href="../College/Electrical">Electrical Enggineers</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item nav-link nav-item" href="../College/Electronic">Electronic Enggineers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="../College/Services">Services</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="../College/Contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+    <!-- END HEADER -->
+    @RenderBody()
+
+    <!-- START FOOTER -->
+    <footer class="bg-dark footer_dark">
+        <div class="top_footer">
+            <div class="container">
+                <div class="row" style="text-align:center;">
+                    <div class="col-lg-3 col-sm-8 mb-4 mb-lg-0">
+                        @*<div class="footer_logo">
+                                <a href="../Home/Index"><img alt="logo" src="../assets/images/mmit.jpg" height="90" width="250"></a>
+                            </div>*@
+                        <h6 class="widget_title">Objective</h6>
+                        <p>MMIT Santkabir Nagar is the best collage to start journey in Computer Science ,Electrical and Electronic Industry. MMIT Santkabir Nagar provides the good plateform for Technical Engineers. </p>
+
+                    </div>
+                    <div class="col-lg-2 col-sm-4 mb-4 mb-lg-0">
+                        <h6 class="widget_title">Useful Links</h6>
+                        <ul class="list_none widget_links links_style1">
+                            <li><a href="../College/Index">Home</a></li>
+                            <li><a href="../College/AboutUs">About Us</a></li>
+                            <li><a href="../College/Register">Join Us</a></li>
+                            <li><a href="../College/Contact">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <h6 class="widget_title">Follow Us</h6>
+                        <ul class="list_none social_icons radius_social social_white social_style1">
+                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                            <li><a href="#"><i class="ion-social-youtube-outline"></i></a></li>
+                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h6 class="widget_title">Address</h6>
+                        <ul class="contact_info contact_info_light list_none">
+                            <li>
+                                <i class="fa fa-map-marker-alt "></i>
+                                <address style="text-align:center;">Balusasan Khalilabaad Santkabir Nagar Uttar Pradesh</address>
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i>
+                                <a href="#" style="text-align:center;">mmitskn@gmail.com</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-mobile-alt"></i>
+                                <p style="text-align:center;">+91 800 983 5278</p>
+                            </li>
+                        </ul><br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom_footer bg_black">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="copyright m-md-0 text-center text-md-left">© @DateTime.Now.Year All Rights Reserved by MMIT SKN.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list_none footer_link text-center text-md-right">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+
+    <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+
+    <!-- Latest jQuery -->
+    <script src="~/assets/js/jquery-1.12.4.min.js"></script>
+    <!-- jquery-ui -->
+    <script src="~/assets/js/jquery-ui.js"></script>
+    <!-- popper min js -->
+    <script src="~/assets/js/popper.min.js"></script>
+    <!-- Latest compiled and minified Bootstrap -->
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- owl-carousel min js  -->
+    <script src="~/assets/owlcarousel/js/owl.carousel.min.js"></script>
+    <!-- magnific-popup min js  -->
+    <script src="~/assets/js/magnific-popup.min.js"></script>
+    <!-- waypoints min js  -->
+    <script src="~/assets/js/waypoints.min.js"></script>
+    <!-- parallax js  -->
+    <script src="~/assets/js/parallax.js"></script>
+    <!-- countdown js  -->
+    <script src="~/assets/js/jquery.countdown.min.js"></script>
+    <!-- jquery.counterup.min js -->
+    <script src="~/assets/js/jquery.counterup.min.js"></script>
+    <!-- imagesloaded js -->
+    <script src="~/assets/js/imagesloaded.pkgd.min.js"></script>
+    <!-- isotope min js -->
+    <script src="~/assets/js/isotope.min.js"></script>
+    <!-- jquery.parallax-scroll js -->
+    <script src="~/assets/js/jquery.parallax-scroll.js"></script>
+    <!-- scripts js -->
+    <script src="~/assets/js/scripts.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/hover-min.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse visible-xs" style="background: black;font-family:'Times New Roman'">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/principle/Index" style=" color:white;margin-top:2%;">Home</a></li>
+                   
+                    <li><a href="/principle/view_Students" style=" color: white; margin-top:2%;"> view Students</a></li>
+
+                    <li><a href="/principle/view_Faculties" style=" color: white; margin-top: 10px;"> view Faculties</a></li>
+                    <li><a href="/principle/view_Time_Table" style=" color: white; margin-top: 10px;"> view Time Table</a></li>
+
+
+                    <li><a href="/principle/Project_Report" style=" color: white; margin-top: 10px;"> Project Report</a></li>
+
+                    <li><a href="/principle/Change_Password" style=" color: white; margin-top: 10px;"> Change Password</a></li>
+                    <li><a href="/principle/Logout" style=" color: white; margin-top: 10px;">Logout</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid" style="font-family:'Times New Roman'">
+        <div class="row content">
+            <div class="col-sm-2 sidenav hidden-xs" style=" background-color: gray; box-shadow: inset 0 0 2em black; color: white;;
+ min-height: 620px; color: white;">
+
+                <ul class="nav nav-pills nav-stacked text-center" style="font-size:20px;">
+
+                    <li><a href="/principle/Index" style=" color:white;margin-top:6%;">Home</a></li>
+                    @*<li><a href="/principle/view_Course" style=" color:white;"> view Course</a></li>*@
+                    <li><a href="/principle/view_Students" style=" color:white;"> view Students</a></li>
+
+                    <li><a href="/principle/view_Faculties" style=" color:white;"> view Faculties</a></li>
+                    <li><a href="/principle/view_Time_Table" style=" color:white;"> view Time Table</a></li>
+
+
+                    <li><a href="/principle/Project_Report" style=" color:white;"> Project Report</a></li>
+
+                    <li><a href="/principle/Change_Password" style=" color:white;"> Change Password</a></li>
+                    <li><a href="/principle/Logout" style=" color:white;">Logout</a></li>
+
+                </ul><br>
+            </div>
+
+
+            <div class="col-sm-10">
+                <div class="row">
+
+                    <div class="row text-center" style="background-color: #0c79c3; box-shadow: inset 0 0 2em black;color:white; padding:0px; margin:0px; font-size:30px;min-height:80px;font-family:bolder;">
+                        <p style="margin-top:10px;">Welcome To Maha Maya Polytechnic Balusashan</p>
+
+                    </div>
+                    <div>
+                        @RenderBody()
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*<meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />
+    <meta name="description" content="This document is an example of JavaScript Field label form validation using a sample registration form. " />
+    <link rel='stylesheet' href='js-field-level-form-validation.css' type='text/css' />
+    <script src="field-level-sample-registration-form-validation.js"></script>*@
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/hover-min.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+</head>
+<body onload="firstfocus();">
+    <div class="container-fluid" style="font-family:'Times New Roman'">
+
+        <nav class="navbar navbar-inverse visible-xs" style="background:black;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Admin/Index" style=" color:white;">Home</a></li>
+                        <li><a href="/Admin/Course" style=" color:white;">Course</a></li>
+                        <li><a href="/Admin/Students" style=" color:white;">Students</a></li>
+                        <li><a href="/Admin/Subject" style=" color:white;">Subject</a></li>
+                        <li><a href="/Admin/Faculties" style=" color:white;">Faculties</a></li>
+
+                        <li><a href="/Admin/Users" style=" color:white;">Users</a></li>
+
+
+                        <li><a href="/Admin/Syllabus" style=" color:white;">Syllabus</a></li>
+
+                        <li><a href="/Admin/Assign_Subject" style=" color:white;">Assign Subject</a></li>
+                        <li><a href="/Admin/Allotsubject" style=" color:white;">Allot Subject</a></li>
+                        <li><a href="/Admin/Logout" style=" color:white;">Logout</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid" style="font-family:'Times New Roman'">
+        <div class="row content">
+            <div class="col-sm-2 sidenav hidden-xs" style=" background-color: gray; box-shadow: inset 0 0 2em black; color: white;; min-height: 620px; color: white;">
+
+                <ul class="nav nav-pills nav-stacked text-center" style="font-size:20px;">
+
+                    <li><a href="/Admin/Index" style=" color:white;">Home</a></li>
+                    <li><a href="/Admin/Course" style=" color:white;">Course</a></li>
+                    <li><a href="/Admin/Students" style=" color:white;">Students</a></li>
+                    <li><a href="/Admin/Subject" style=" color:white;">Subject</a></li>
+                    <li><a href="/Admin/Faculties" style=" color:white;">Faculties</a></li>
+
+                    <li><a href="/Admin/Users" style=" color:white;">Users</a></li>
+
+
+                    <li><a href="/Admin/Syllabus" style=" color:white;">Syllabus</a></li>
+
+                    <li><a href="/Admin/Assign_Subject" style=" color:white;">Assign Subject</a></li>
+                    <li><a href="/Admin/Allotsubject" style=" color:white;">Allot Subject</a></li>
+                    <li><a href="/Admin/Logout" style=" color:white;">Logout</a></li>
+                    <li><a href="/Admin/Change_Password" style=" color:white;">Change Password</a></li>
+                </ul><br>
+            </div>
+
+
+            <div class="col-sm-10">
+                <div class="row">
+
+                    <div class="row text-center" style="background-color: #0c79c3; box-shadow: inset 0 0 2em black;color:white; padding:0px; margin:0px; font-size:30px;min-height:80px;font-family:bolder;">
+                        <p style="margin-top:10px;">Welcome To Maha Maya Polytechnic Balusashan</p>
+
+                    </div>
+                    <div>
+                        @RenderBody()
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
