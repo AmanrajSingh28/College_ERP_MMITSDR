@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/CollegeMaster.cshtml";
+}
+
+<!-- START SECTION CONTACT -->
+<section class="small_pb bg_gray">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8">
+                <div class="text-center animation" data-animation="fadeInUp" data-animation-delay="0.01s">
+                    <div class="heading_s1 text-center">
+                        <h2>Get In Touch</h2>
+                    </div>
+                    <p>We give you many technologies which you can choose for learn it with the support of our best Consultants. For any kind of information, get in touch with us.</p>
+                    <div class="small_divider"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="box_shadow1 radius_all_10">
+                    <div class="row no-gutters">
+                        <div class="col-md-6 animation" data-animation="fadeInLeft" data-animation-delay="0.02s">
+                            <div class="padding_eight_all">
+                                <div class="field_form">
+                                    <form method="post" action="../College/Contact" name="enq">
+                                        <div class="row">
+                                            <div class="form-group col-12">
+                                                <input required="required" placeholder="Enter Name" id="first-name" class="form-control" name="name" type="text">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input required="required" placeholder="Enter Email" id="email" class="form-control" name="email" type="email">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input required="required" placeholder="Enter Phone No." id="phone" class="form-control" name="phone" type="tel">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input placeholder="Enter Subject" id="subject" class="form-control" name="subject" type="text">
+                                            </div>
+                                            <div class="form-group col-lg-12">
+                                                <textarea required="required" placeholder="Message" id="description" class="form-control" name="message" rows="3"></textarea>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <button type="submit" title="Submit Your Message!" class="btn btn-default" value="Submit">Submit</button>
+                                            </div>
+                                            <div class="col-lg-12 text-center">
+                                                <div id="alert-msg" class="alert-msg text-center"></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 animation" data-animation="fadeInRight" data-animation-delay="0.4s">
+                            <div class="contact_map map_radius_rtrb overflow-hidden h-100">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.8953772015593!2d83.0646614145191!3d26.843279769538945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39912f2950382955%3A0x2538e1226b3d9948!2sMMIT%20Polytechnic%20Balu%20Sashan%20Santkabir%20Nagar!5e0!3m2!1sen!2sin!4v1582178844939!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                <!-----<iframe src="" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION CONTACT -->
+<!-- START SECTION CONTACT -->
+<section class="small_pt">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8">
+                <div class="text-center animation" data-animation="fadeInUp" data-animation-delay="0.01s">
+                    <div class="heading_s1 text-center">
+                        <h2>Contact Information</h2>
+                    </div>
+                    <p>If you are going to start your journey in Technical industry, you can join us and if you want more information about MMIT Santabir Nagar, call us on any contact number that are in the website.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="overlay_bg_danger_90 icon_box text-center text_white radius_all_10 background_bg animation" data-img-src="../assets/images/location.jpg" data-animation="fadeInUp" data-animation-delay="0.02s">
+                    <div class="box_icon mb-3">
+                        <img src="../assets/images/location.jpg" alt="map_icon">
+                    </div>
+                    <div class="intro_desc">
+                        <h5>Address</h5>
+                        <p>Balusasan Khalilabaad Santkabir Nagar </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="overlay_bg_light_green_90 icon_box text-center text_white radius_all_10 background_bg animation" data-img-src="../assets/images/phone1.jpg" data-animation="fadeInUp" data-animation-delay="0.03s">
+                    <div class="box_icon mb-3">
+                        <img src="../assets/images/phone.jpg" alt="phone_icon">
+                    </div>
+                    <div class="intro_desc">
+                        <h5>Call Us</h5>
+                        <p>+91 993-679-6369 <br />+91 930-619-9011</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="overlay_bg_default_90 icon_box text-center text_white radius_all_10 background_bg animation" data-img-src="../assets/images/email1.png" data-animation="fadeInUp" data-animation-delay="0.04s">
+                    <div class="box_icon mb-3">
+                        <img src="../assets/images/email.png" alt="email_icon">
+                    </div>
+                    <div class="intro_desc">
+                        <h5>Email</h5>
+                        <p>mmitskn@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION CONTACT -->
+
