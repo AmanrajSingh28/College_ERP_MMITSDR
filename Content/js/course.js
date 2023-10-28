@@ -1,0 +1,1 @@
+﻿$(document).ready(function () {$("#ddlyear").change(function () {var branch = $("#ddlbranch").val();var year = $("#ddlyear").val();$.ajax({type: "post",url: "/Admin/RollNo",data: { Branch: branch, Year: year },success: function (data) { $("#txtroll").val(data).attr("Readonly", true);},failure: function () {alert("Error");}})})})
