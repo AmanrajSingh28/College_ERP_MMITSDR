@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/StudentMaster.cshtml";
+    }    
+@using System.Data.Sql;
+@using System.Data;
+@using mycollage.Models;
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+
+<div class="container-fluid">
+    @Session["sid"];
+    <div class="row text-center" style="margin-top:2%;font-family:bolder;font-size:20px;color:white;">
+        <div class="col-sm-3">
+            <div class="well" style="background:teal;">
+                <h4>New</h4>
+                <p>Attendance</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="well" style="background:teal;">
+                <h4>No Fees Due</h4>
+                <p>Fees Due</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="well" style="background:teal;">
+                <h4>No</h4>
+                <p>Achievements</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="well" style="background:teal;">
+                <h4>250</h4>
+                <p>College Fine</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4" style="min-height: 300px; border: 1px solid black;margin-left:0px;">
+            <div class="row text-center" style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; color: white; font-size: 20px; color: white; min-height: 50px; ">
+                <p style="margin-top:10px;">Notifications</p>
+            </div>
+            <div class="row">
+                @{
+                    string cmd = "select * from notification";
+                    DatabaseManager db = new DatabaseManager();
+                    DataTable dt = db.GetAllRecord(cmd);
+                    if (dt.Rows.Count > 0)
+                    {
+                        <table class="table table-responsive" width="100%">
+                            <thead><tr style="background-color:teal; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; "><th>ReciverType</th><th>Message</th><th>NotificationDate</th></tr></thead>
+                            <tbody>
+
+                                @for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    <tr>
+
+                                        <td>@dt.Rows[i]["ReciverType"]</td>
+                                        <td>@dt.Rows[i]["Message"]</td>
+
+                                        <td>@dt.Rows[i]["NotificationDate"]</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6">
+            <div class="row" style="font-family:bolder;font-size:30px;margin-top:10px;margin-left:50px;">
+                <p>Current Month Attendance</p>
+            </div>
+            <div class="row" style="font-size: 20px;background-color: #0c79c3;box-shadow: inset 0 0 2em black; color: white;">
+                <div class="col-sm-3" >Sr.No.</div>
+                <div class="col-sm-3" >Sub.Name</div>
+                <div class="col-sm-3" >Attandance</div>
+                <div class="col-sm-3" >Percentage</div>
+            </div>
+        </div>
+
+    </div>
+</div>

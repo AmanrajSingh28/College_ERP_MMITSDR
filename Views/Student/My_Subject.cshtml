@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "My_Subject";
+    Layout = "~/Views/Shared/StudentMaster.cshtml";
+}
+@using mycollage.Models;
+@using System.Data;
+<link href="~/Content/css/akash.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/course.js"></script>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/css/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    })
+
+</script>
+<div class="container-fluid">
+    <div class="row text-center" style="min-height:50px;font-size:30px;color:black;margin-top:-1%;font-family:bolder;">
+        <p style="margin-top:10px;">My_Subject</p>
+    </div>
+    <!--code for show details-->
+    @{
+    string cmd = "select * from Students";
+    DatabaseManager db = new DatabaseManager();
+    DataTable dt = db.GetAllRecord(cmd);
+    if (dt.Rows.Count > 0)
+    {
+          <div class="col-sm-12" style="overflow-y:scroll;height:500px">
+        <table class="table table-responsive" id="example" width="100%" style="font-family:'Times New Roman'">
+            <thead><tr style="background-color: #0c79c3; box-shadow: inset 0 0 2em black; border: 1px solid black; margin-top: 1%;color:white;font-size:18px; "><th>Year</th><th>Branch</th><th>First Name</th><th>Last Name</th><th>Subject</th><th>Semester</th></tr></thead>
+            <tbody>
+
+                @for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    <tr>
+
+
+                        <td class="td1" id="name">@dt.Rows[i]["year"]</td>
+                        <td>@dt.Rows[i]["Branch"]</td>
+                        <td>@dt.Rows[i]["FName"]</td>
+                        <td>@dt.Rows[i]["LName"]</td>
+                        <td>@dt.Rows[i]["subject"]</td>
+                        <td>@dt.Rows[i]["semester"]</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+              </div>
+    }
+}
+
+    <!--End code for show details-->
+</div>
